@@ -1,0 +1,36 @@
+/* --- BIG ROUNDED ISLAND FOOTER --- */
+.footer-wrapper { padding: 2rem; max-width: 1400px; margin: 0 auto; }
+.island-footer {
+    background: var(--surface-color); border-radius: var(--radius-lg);
+    padding: 4rem 2rem 2rem; box-shadow: var(--shadow-soft);
+}
+
+.footer-content {
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; gap: 2rem; margin-bottom: 3rem;
+}
+
+.footer-brand { max-width: 500px; }
+.footer-brand img { margin-bottom: 1rem; }
+
+.footer-contact { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; color: var(--text-muted); }
+.footer-contact p { display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 1rem; }
+
+.footer-links {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;
+    margin-top: 1rem; width: 100%;
+}
+.footer-links a { font-weight: 500; color: var(--text-main); transition: color 0.2s; }
+.footer-links a:hover { color: var(--primary); }
+
+.footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.05); flex-wrap: wrap; gap: 1rem;
+}
+.legal-links a { color: var(--text-muted); font-size: 0.9rem; }
+.legal-links a:hover { color: var(--primary); }
+
+@media (max-width: 768px) {
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .footer-contact { flex-direction: column; gap: 0.5rem; }
+}

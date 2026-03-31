@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Bellbrook Open Arms Clinic</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/general.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+
+    <style>
+        /* Base Page Styles maintained from Index */
+        main { padding-top: 140px; max-width: 1400px; margin: 0 auto; padding-inline: 2rem; overflow-x: hidden; }
+        
+        /* Typography & Utilities */
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--primary); margin-bottom: 1rem; }
+        .chip { display: inline-block; padding: 0.5rem 1rem; background: var(--primary-light); color: var(--primary); border-radius: 50px; font-weight: 600; font-size: 0.875rem; margin-bottom: 1.5rem; }
+        
+        /* Hero Section (Reused & Adapted) */
+        .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; min-height: 50vh; margin-bottom: 6rem; }
+        .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 1.25rem; margin-bottom: 2rem; line-height: 1.6; }
+        .hero-image-island { background: linear-gradient(135deg, var(--primary-light), #ffffff); height: 450px; border-radius: var(--radius-lg, 40px); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-soft, 0 20px 40px rgba(0,0,0,0.08)); overflow: hidden; }
+        .hero-image-island img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+
+        /* Split Content Islands */
+        .split-section { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 6rem; }
+        .split-section.reverse { direction: rtl; }
+        .split-section.reverse > * { direction: ltr; }
+        .text-island { padding: 2rem 0; }
+        .text-island h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; }
+        .text-island h3 { font-size: 1.5rem; margin: 1.5rem 0 0.5rem; color: var(--text-main); }
+        .text-island p { font-size: 1.1rem; line-height: 1.7; margin-bottom: 1rem; color: var(--text-light, #555); }
+        
+        /* Image Islands */
+        .image-island { border-radius: var(--radius-lg, 40px); overflow: hidden; box-shadow: var(--shadow-soft, 0 20px 40px rgba(0,0,0,0.08)); height: 400px; position: relative; }
+        .image-island img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .image-island:hover img { transform: scale(1.05); }
+
+        /* Multi-Image Collage for Paths to Wellness */
+        .image-collage { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; height: 100%; }
+        .collage-item { border-radius: var(--radius-lg, 30px); overflow: hidden; box-shadow: var(--shadow-soft); height: 250px; }
+        .collage-item.tall { grid-row: span 2; height: 100%; }
+        .collage-item img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Service & Info Cards */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+        .info-card { background: var(--surface-color, #fff); padding: 2.5rem; border-radius: var(--radius-md, 24px); box-shadow: var(--shadow-soft, 0 10px 30px rgba(0,0,0,0.05)); transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid rgba(0,0,0,0.02); height: 100%; }
+        .info-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover, 0 20px 40px rgba(0,0,0,0.1)); }
+        .card-icon { width: 50px; height: 50px; background: var(--primary-light, #e0f2fe); color: var(--primary, #0284c7); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+        .card-icon span { font-size: 28px; }
+        .info-card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--primary); }
+        .info-card p { line-height: 1.6; color: var(--text-light, #555); margin-bottom: 0; }
+
+        /* Highlight Box / Mission Statement */
+        .highlight-box { background: linear-gradient(135deg,#eef9ff , #eef9ff); color: white; padding: 4rem 3rem; border-radius: var(--radius-lg, 40px); text-align: center; margin: 6rem 0; box-shadow: 0 20px 40px rgba(173, 173, 173, 0.2); }
+        .highlight-box h2 { color: rgb(0, 0, 0); margin-bottom: 1.5rem; }
+        .highlight-box p { font-size: 1.25rem; line-height: 1.8; max-width: 900px; margin: 0 auto; opacity: 0.95; font-style: italic; }
+
+        /* Clinic Times specific styling */
+        .clinic-times-wrapper { background: var(--bg-color, #f8fafc); padding: 4rem; border-radius: var(--radius-lg, 40px); margin-bottom: 6rem; }
+        .time-row { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .time-row:last-child { border-bottom: none; }
+        .time-details h4 { font-size: 1.2rem; color: var(--primary); margin-bottom: 0.25rem; }
+        .time-details p { font-size: 0.9rem; color: var(--text-light, #555); font-weight: 500; }
+        .time-badge { background: white; padding: 0.75rem 1.5rem; border-radius: 12px; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 0.5rem; }
+
+        @media (max-width: 968px) { 
+            .hero, .split-section { grid-template-columns: 1fr; text-align: center; gap: 2rem; } 
+            .split-section.reverse { direction: ltr; }
+            .hero-image-island, .image-island { height: 300px; } 
+            .image-collage { grid-template-columns: 1fr; }
+            .collage-item.tall { height: 250px; }
+            .highlight-box { padding: 3rem 1.5rem; }
+            .time-row { flex-direction: column; text-align: center; gap: 1rem; }
+            .clinic-times-wrapper { padding: 2rem; }
+        }
+
+        /* Simple animation utility classes */
+        .slide-up { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .slide-up.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <header class="island-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo-icon" aria-label="Bellbrook Open Arms Clinic Home">
+                 <img src="assets/images/logo.png" width="250" alt="BOAC Logo">
+            </a>
+            
+            <nav class="desktop-menu" aria-label="Main Navigation">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="volunteer.html">Volunteer</a>
+                
+                <div class="dropdown">
+                    <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                        Resources <span class="material-symbols-rounded" style="font-size: 1.2rem;">expand_more</span>
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                        <a href="articles.html" role="menuitem">Articles</a>
+                        <a href="podcasts.html" role="menuitem">Podcasts</a>
+                    </div>
+                </div>
+
+                <a href="calendar.html">Calendar</a>
+                <a href="help.html" class="get-help">Get Help</a>
+                <a href="donate.html" class="btn-donate">Donate</a>
+            </nav>
+
+            <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="material-symbols-rounded icon-menu">menu</span>
+                <span class="material-symbols-rounded icon-close">close</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-overlay" aria-hidden="true">
+        <nav class="mobile-menu">
+            <a href="index.html" style="transition-delay: 0.1s">Home</a>
+            <a href="about.html" style="transition-delay: 0.15s">About</a>
+            <a href="volunteer.html" style="transition-delay: 0.2s">Volunteer</a>
+            
+            <div class="dropdown" style="transition-delay: 0.25s">
+                <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    Resources <span class="material-symbols-rounded">expand_more</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="articles.html">Articles</a>
+                    <a href="podcasts.html">Podcasts</a>
+                </div>
+            </div>
+
+            <a href="calendar.html" style="transition-delay: 0.3s">Calendar</a>
+            <a href="donate.html" class="btn-donate" style="transition-delay: 0.35s">Donate</a>
+            <a href="help.html" class="get-help" style="transition-delay: 0.4s">Get Help</a>
+        </nav>
+    </div>
+
+    <main>
+        <section class="hero slide-up">
+            <div class="hero-content">
+                <div class="chip">About our clinic</div>
+                <h1>Healing the community, <span>together.</span></h1>
+                <p>The Open Arms Health Clinic provides free medical care to those who are uninsured or underinsured. We believe everyone deserves access to compassionate, high-quality healthcare.</p>
+            </div>
+            <div class="hero-image-container">
+                <div class="hero-image-island">
+                    <img src="assets/images/abouthero.jpg" alt="Clinic building and staff">
+                </div>
+            </div>
+        </section>
+
+        <section class="services-section slide-up">
+            <div class="section-header">
+                <h2>Our Core Services</h2>
+                <p>We provide comprehensive gap care to meet the immediate needs of our community.</p>
+            </div>
+            
+            <div class="card-grid">
+                <div class="info-card">
+                    <div class="card-icon"><span class="material-symbols-rounded">medical_services</span></div>
+                    <h3>Primary Care</h3>
+                    <p>Free medical care for those who are uninsured or underinsured. We see patients on a walk-in basis.</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon"><span class="material-symbols-rounded">prescriptions</span></div>
+                    <h3>Prescription Assistance</h3>
+                    <p>We offer prescription assistance to those who qualify for prescriptions we write in our clinic.</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon"><span class="material-symbols-rounded">biotech</span></div>
+                    <h3>Laboratory Tests</h3>
+                    <p>Many common laboratory tests are paid for by Open Arms to ensure our patients get accurate diagnoses.</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon"><span class="material-symbols-rounded">emergency</span></div>
+                    <h3>Urgent Care</h3>
+                    <p>We can also treat acute health problems and provide immediate attention during our operating hours.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="split-section slide-up">
+            <div class="image-island">
+                <img src="assets/images/boacdef1.jpg" alt="Medical students providing care">
+            </div>
+            <div class="text-island">
+                <div class="chip">Education & Care</div>
+                <h2>The Open Arms Student-Run Free Clinic</h2>
+                <p>Developed by a group of Boonshoft School of Medicine Medical Students, the Student-Run Free Clinic exists to provide care for the uninsured and underinsured in the Dayton area while providing a vital educational experience for medical students.</p>
+                <p>The clinic is entirely run by medical students and strictly overseen by a licensed physician.</p>
+                
+                <h3>Location & Walk-ins</h3>
+                <p>We are located at <strong>4403 OH-725 Suite E, Bellbrook, OH.</strong><br>
+                Walk-in appointments are available on the first Saturday of every month from 9 a.m. - 1 p.m.</p>
+
+                <h3>For Physicians</h3>
+                <p>If you are a physician who is interested in volunteering, please email: <a href="mailto:OpenArmsSRFC@gmail.com" style="color: var(--primary); font-weight: 600;">OpenArmsSRFC@gmail.com</a></p>
+            </div>
+        </section>
+
+        <section class="highlight-box slide-up">
+            <h2>Paths to Wellness Mission</h2>
+            <p>"Paths to Wellness is an inter-professional group of students dedicated to promoting the health and well-being of members of the surrounding community. We counsel patients through individualized, integrative sessions on health-related topics such as nutrition, stress management, sleep, movement and exercise. Together, we envision a future of healthcare that is as dedicated to the promotion of health and well-being as it is to the curing and healing of disease."</p>
+        </section>
+
+        <section class="split-section reverse slide-up">
+            <div class="image-collage">
+                <div class="collage-item tall">
+                    <img src="assets/images/boacdef3.jpg" alt="Wellness counseling session">
+                </div>
+                <div class="collage-item">
+                    <img src="assets/images/boacdef4.jpg" alt="Community wellness workshop">
+                </div>
+                <div class="collage-item">
+                    <img src="assets/images/boacdef2.jpg" alt="Healthy lifestyle consultation">
+                </div>
+            </div>
+            <div class="text-island">
+                <div class="chip">Holistic Health</div>
+                <h2>What is Paths to Wellness?</h2>
+                <p>A unique program run by Wright State medical and psychology students at the Open Arms Clinic. Every second Saturday of the month, we offer free, private sessions to help answer questions about your health and learn simple changes for a healthier lifestyle. We even offer online appointments through Doxy.me, a HIPAA-compliant telehealth platform for those with barriers to transportation.</p>
+                <p>We also offer free community wellness workshops once a month at 9:30 a.m. at the BellHOP cafe.</p>
+
+                <h3>What can it teach me?</h3>
+                <p>Whether you want to learn how to get better sleep or simple ways to reduce stress, our students are trained to provide counseling on stress reduction, nutrition, exercise, sleep, and other health-related topics. Come talk with us—we are here to assist you!</p>
+
+                <h3>What is it NOT?</h3>
+                <p>Paths to Wellness is NOT a medical clinic. We will not be diagnosing or treating any medical conditions during these sessions. If you need to see a doctor for a medical problem, please visit our medical clinic on Tuesday evenings.</p>
+
+                <h3>How can I participate?</h3>
+                <p>Call our office at <strong>(937) 848-2939</strong> to schedule an appointment. 1-hour appointments are available from 9 am to noon (in-person or online via Doxy) on the second Saturday of every month. Our receptionist is available to schedule on Tuesday evenings and every first and third Friday.</p>
+            </div>
+        </section>
+
+        <section class="split-section slide-up" style="align-items: stretch;">
+            <div class="text-island clinic-times-wrapper" style="padding: 3rem; margin: 0;">
+                <h2 style="margin-bottom: 2rem;">Clinic Times Overview</h2>
+                
+                <div class="time-row">
+                    <div class="time-details">
+                        <h4>Primary Care Clinic</h4>
+                        <p>All Medical Issues, Walk-Ins Welcome</p>
+                    </div>
+                    <div class="time-badge">
+                        <span class="material-symbols-rounded" style="color: var(--primary);">schedule</span>
+                        Tuesday Evenings <br> 6 p.m. - 9 p.m.
+                    </div>
+                </div>
+
+                <div class="time-row">
+                    <div class="time-details">
+                        <h4>Student-Run Free Clinic</h4>
+                        <p>All Medical Issues, Walk-Ins Welcome</p>
+                    </div>
+                    <div class="time-badge">
+                        <span class="material-symbols-rounded" style="color: var(--primary);">event</span>
+                        1st Saturday <br> 9 a.m. - 1 p.m.
+                    </div>
+                </div>
+
+                <div class="time-row">
+                    <div class="time-details">
+                        <h4>Paths to Wellness</h4>
+                        <p>By Appointment Only</p>
+                    </div>
+                    <div class="time-badge">
+                        <span class="material-symbols-rounded" style="color: var(--primary);">edit_calendar</span>
+                        2nd Saturday <br> 9 a.m. - Noon
+                    </div>
+                </div>
+            </div>
+            
+            <div class="image-island" style="height: auto; min-height: 400px;">
+                <img src="assets/images/boacdef5.jpg" alt="Clinic exterior and welcome sign">
+            </div>
+        </section>
+
+    </main>
+
+    <div class="footer-wrapper">
+        <footer class="island-footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <p>Providing no-cost health services for the uninsured and underinsured in the Bellbrook, Ohio community area.</p>
+                </div>
+                
+                <div class="footer-contact">
+                    <p><span class="material-symbols-rounded">phone</span> (937) 848-2939</p>
+                    <p><span class="material-symbols-rounded">location_on</span> 4403 OH-725 E, Bellbrook, OH 45305</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="about.html">About Us</a>
+                    <a href="calendar.html">Calendar</a>
+                    <a href="donate.html">Donate</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="volunteer.html">Volunteer</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BOAC - A 501(c)3 Tax Exempt Organization</p>
+                <div class="legal-links">
+                    <a href="adminlogin.html">Admin Login</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <svg style="width: 0; height: 0; position: absolute;" aria-hidden="true" focusable="false">
+        <filter id="liquid-glass-refraction" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" result="noise" />
+            <feGaussianBlur in="noise" stdDeviation="1" result="blurredNoise" />
+            <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="8" xChannelSelector="R" yChannelSelector="G" result="displacement" />
+        </filter>
+    </svg>
+
+    <script src="assets/js/navbar.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.slide-up').forEach(el => scrollObserver.observe(el));
+        });
+    </script>
+</body>
+</html>

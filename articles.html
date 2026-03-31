@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles & Resources | Bellbrook Open Arms Clinic</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/general.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+
+    <style>
+        main { 
+            padding-top: 140px; 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding-inline: 2rem; 
+            min-height: 80vh;
+            padding-bottom: 4rem;
+        }
+
+        /* Page Header Styles */
+        .page-header { 
+            text-align: center; 
+            margin-bottom: 4rem; 
+            max-width: 800px;
+            margin-inline: auto;
+        }
+        .page-header h1 { 
+            font-size: clamp(2.5rem, 4vw, 3.5rem); 
+            letter-spacing: -0.02em; 
+            margin-bottom: 1rem; 
+            color: var(--primary);
+        }
+        .page-header p { 
+            font-size: 1.25rem; 
+            color: var(--text-main); 
+            line-height: 1.6;
+        }
+
+        /* Articles Grid & Cards - Island Curvature Theme */
+        .articles-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
+            gap: 2.5rem; 
+        }
+        
+        .article-card { 
+            background: var(--surface-color, #ffffff); 
+            padding: 2.5rem; 
+            border-radius: var(--radius-lg, 24px); 
+            box-shadow: var(--shadow-soft, 0 10px 30px rgba(0,0,0,0.05)); 
+            transition: var(--transition-snappy, all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)); 
+            border: 1px solid rgba(0,0,0,0.03); 
+            display: flex; 
+            flex-direction: column; 
+            height: 100%; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: var(--shadow-hover, 0 20px 40px rgba(0,0,0,0.08)); 
+        }
+
+        .article-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary-light, #e0f2fe), var(--primary, #0284c7));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .article-card:hover::before {
+            opacity: 1;
+        }
+
+        .article-category { 
+            display: inline-block; 
+            padding: 0.4rem 0.8rem; 
+            background: var(--primary-light, #e0f2fe); 
+            color: var(--primary, #0284c7); 
+            border-radius: 50px; 
+            font-weight: 600; 
+            font-size: 0.75rem; 
+            margin-bottom: 1.5rem; 
+            align-self: flex-start;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .article-title { 
+            font-size: 1.5rem; 
+            margin-bottom: 1rem; 
+            color: var(--text-dark, #111827);
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            color: var(--text-main, #4b5563);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding-top: 1.5rem;
+            margin-top: auto;
+            font-size: 0.875rem;
+            color: var(--text-main, #6b7280);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .meta-item .material-symbols-rounded {
+            font-size: 1.1rem;
+            color: var(--primary, #0284c7);
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary, #0284c7);
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: gap 0.2s ease;
+        }
+
+        .read-more:hover {
+            gap: 0.8rem;
+        }
+
+        @media (max-width: 768px) { 
+            .articles-grid { grid-template-columns: 1fr; } 
+            .article-card { padding: 2rem; }
+        }
+
+        /* Simple animation utility classes */
+        .slide-up { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .slide-up.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <header class="island-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo-icon" aria-label="Bellbrook Open Arms Clinic Home">
+                 <img src="assets/images/logo.png" width="250" alt="BOAC Logo">
+            </a>
+            
+            <nav class="desktop-menu" aria-label="Main Navigation">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="volunteer.html">Volunteer</a>
+                
+                <div class="dropdown">
+                    <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                        Resources <span class="material-symbols-rounded" style="font-size: 1.2rem;">expand_more</span>
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                        <a href="articles.html" role="menuitem">Articles</a>
+                        <a href="podcasts.html" role="menuitem">Podcasts</a>
+                    </div>
+                </div>
+
+                <a href="calendar.html">Calendar</a>
+                <a href="help.html" class="get-help">Get Help</a>
+                <a href="donate.html" class="btn-donate">Donate</a>
+            </nav>
+
+            <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="material-symbols-rounded icon-menu">menu</span>
+                <span class="material-symbols-rounded icon-close">close</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-overlay" aria-hidden="true">
+        <nav class="mobile-menu">
+            <a href="index.html" style="transition-delay: 0.1s">Home</a>
+            <a href="about.html" style="transition-delay: 0.15s">About</a>
+            <a href="volunteer.html" style="transition-delay: 0.2s">Volunteer</a>
+            
+            <div class="dropdown" style="transition-delay: 0.25s">
+                <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    Resources <span class="material-symbols-rounded">expand_more</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="articles.html">Articles</a>
+                    <a href="podcasts.html">Podcasts</a>
+                </div>
+            </div>
+
+            <a href="calendar.html" style="transition-delay: 0.3s">Calendar</a>
+            <a href="donate.html" class="btn-donate" style="transition-delay: 0.35s">Donate</a>
+            <a href="help.html" class="get-help" style="transition-delay: 0.4s">Get Help</a>
+        </nav>
+    </div>
+
+    <main>
+        <section class="page-header slide-up">
+            <h1>Health & Community Articles</h1>
+            <p>Stay informed with the latest health tips, clinic updates, and wellness resources written by our dedicated volunteer medical professionals.</p>
+        </section>
+
+        <section class="articles-grid" id="articles-container">
+            </section>
+    </main>
+
+    <div class="footer-wrapper">
+        <footer class="island-footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <p>Providing no-cost health services for the uninsured and underinsured in the Bellbrook, Ohio community area.</p>
+                </div>
+                
+                <div class="footer-contact">
+                    <p><span class="material-symbols-rounded">phone</span> (937) 848-2939</p>
+                    <p><span class="material-symbols-rounded">location_on</span> 4403 OH-725 E, Bellbrook, OH 45305</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="#">About Us</a>
+                    <a href="#">Calendar</a>
+                    <a href="#">Donate</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Volunteer</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BOAC - A 501(c)3 Tax Exempt Organization</p>
+                <div class="legal-links">
+                    <a href="adminlogin.html">Admin Login</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <svg style="width: 0; height: 0; position: absolute;" aria-hidden="true" focusable="false">
+        <filter id="liquid-glass-refraction" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" result="noise" />
+            <feGaussianBlur in="noise" stdDeviation="1" result="blurredNoise" />
+            <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="8" xChannelSelector="R" yChannelSelector="G" result="displacement" />
+        </filter>
+    </svg>
+
+    <script src="assets/js/navbar.js"></script>
+
+    <script>
+        // Mock JSON Data for the Articles Page
+        const articlesData = [
+            {
+                id: 1,
+                title: "Managing Hypertension Without Breaking the Bank",
+                subject: "Patient Education",
+                author: "Dr. Sarah Jenkins",
+                date: "March 28, 2026",
+                excerpt: "High blood pressure is a silent risk, but managing it doesn't have to be financially overwhelming. Discover practical, low-cost dietary adjustments and lifestyle changes you can start today.",
+                link: "#"
+            },
+            {
+                id: 2,
+                title: "Understanding the New Student-Run Saturday Clinic",
+                subject: "Clinic News",
+                author: "Mark Davis, RN",
+                date: "March 15, 2026",
+                excerpt: "We are thrilled to announce expanded Saturday hours! Learn how our partnership with local medical schools is bringing more comprehensive care options to the Bellbrook community.",
+                link: "#"
+            },
+            {
+                id: 3,
+                title: "Spring Allergy Guide: Prevention and Relief",
+                subject: "Seasonal Health",
+                author: "Dr. Emily Chen",
+                date: "March 02, 2026",
+                excerpt: "As the Ohio weather warms up, allergy season arrives in full force. Read our comprehensive guide on identifying triggers, utilizing over-the-counter remedies, and knowing when to seek professional help.",
+                link: "#"
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Function to render articles from JSON
+            const container = document.getElementById('articles-container');
+            
+            articlesData.forEach(article => {
+                const articleHTML = `
+                    <div class="article-card slide-up">
+                        <span class="article-category">${article.subject}</span>
+                        <h2 class="article-title">${article.title}</h2>
+                        <p class="article-excerpt">${article.excerpt}</p>
+                        <a href="${article.link}" class="read-more">
+                            Read Article <span class="material-symbols-rounded">arrow_forward</span>
+                        </a>
+                        <div class="article-meta">
+                            <div class="meta-item">
+                                <span class="material-symbols-rounded">person</span>
+                                <span>${article.author}</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="material-symbols-rounded">calendar_month</span>
+                                <span>${article.date}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', articleHTML);
+            });
+
+            // Re-initialize the scroll observer for the newly injected articles
+            const scrollObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            // Observe all elements with slide-up class (including the newly rendered cards)
+            document.querySelectorAll('.slide-up').forEach(el => scrollObserver.observe(el));
+        });
+    </script>
+</body>
+</html>

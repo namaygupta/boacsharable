@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Bellbrook Open Arms Clinic</title>
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+   
+    <link rel="stylesheet" href="assets/css/general.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+
+    <style>
+        main { padding-top: 140px; max-width: 1400px; margin: 0 auto; padding-inline: 2rem; padding-bottom: 4rem; }
+        
+        /* Page Header */
+        .page-header { text-align: center; margin-bottom: 4rem; }
+        .page-header h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.02em; margin-bottom: 1rem; color: var(--primary); }
+        .page-header p { font-size: 1.25rem; color: var(--text-main); max-width: 600px; margin: 0 auto; }
+
+        /* Contact Layout */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: start; }
+
+        /* Contact Info Side */
+        .contact-info-wrapper { display: flex; flex-direction: column; gap: 2rem; }
+        .info-card { background: var(--surface-color, #ffffff); padding: 2rem; border-radius: var(--radius-lg, 24px); box-shadow: var(--shadow-soft); display: flex; align-items: flex-start; gap: 1rem; border: 1px solid rgba(0,0,0,0.02); }
+        .info-icon { width: 48px; height: 48px; background: var(--primary-light); color: var(--primary); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .info-content h3 { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--primary); }
+        .info-content p { color: var(--text-main); line-height: 1.6; margin: 0; }
+        .info-content a { color: var(--primary); text-decoration: none; font-weight: 500; transition: opacity 0.3s; }
+        .info-content a:hover { opacity: 0.8; }
+
+        /* Contact Form Card */
+        .form-card { background: var(--surface-color, #ffffff); padding: 3rem; border-radius: var(--radius-lg, 24px); box-shadow: var(--shadow-soft); border: 1px solid rgba(0,0,0,0.02); }
+        .form-card h2 { font-size: 2rem; margin-bottom: 2rem; color: var(--primary); }
+        
+        .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-group label { font-weight: 500; font-size: 0.95rem; color: var(--text-main); }
+        
+        /* Input Styling */
+        .form-control { 
+            font-family: inherit; 
+            font-size: 1rem; 
+            padding: 1rem 1.25rem; 
+            border: 1px solid rgba(0,0,0,0.1); 
+            border-radius: 12px; 
+            background: var(--bg-color, #f8f9fa); 
+            transition: all 0.3s ease; 
+            outline: none; 
+            color: var(--text-main);
+        }
+        .form-control:focus { 
+            border-color: var(--primary); 
+            background: #ffffff; 
+            box-shadow: 0 0 0 4px var(--primary-light); 
+        }
+        textarea.form-control { resize: vertical; min-height: 150px; }
+
+        .btn-submit { 
+            background: var(--primary); 
+            color: white; 
+            border: none; 
+            padding: 1rem 2rem; 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            border-radius: 50px; 
+            cursor: pointer; 
+            transition: var(--transition-snappy, all 0.3s ease); 
+            margin-top: 1rem; 
+        }
+        .btn-submit:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15); 
+            opacity: 0.95; 
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 968px) { 
+            .contact-grid { grid-template-columns: 1fr; gap: 3rem; } 
+            .form-row { grid-template-columns: 1fr; gap: 1.5rem; }
+            .form-card { padding: 2rem; }
+        }
+
+        /* Simple animation utility classes */
+        .slide-up { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .slide-up.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <header class="island-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo-icon" aria-label="Bellbrook Open Arms Clinic Home">
+                 <img src="assets/images/logo.png" width="250" alt="BOAC Logo">
+            </a>
+           
+            <nav class="desktop-menu" aria-label="Main Navigation">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="volunteer.html">Volunteer</a>
+               
+                <div class="dropdown">
+                    <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                        Resources <span class="material-symbols-rounded" style="font-size: 1.2rem;">expand_more</span>
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                        <a href="articles.html" role="menuitem">Articles</a>
+                        <a href="podcasts.html" role="menuitem">Podcasts</a>
+                    </div>
+                </div>
+
+                <a href="calendar.html">Calendar</a>
+                <a href="help.html" class="get-help">Get Help</a>
+                <a href="donate.html" class="btn-donate">Donate</a>
+            </nav>
+
+            <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="material-symbols-rounded icon-menu">menu</span>
+                <span class="material-symbols-rounded icon-close">close</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-overlay" aria-hidden="true">
+        <nav class="mobile-menu">
+            <a href="index.html" style="transition-delay: 0.1s">Home</a>
+            <a href="about.html" style="transition-delay: 0.15s">About</a>
+            <a href="volunteer.html" style="transition-delay: 0.2s">Volunteer</a>
+           
+            <div class="dropdown" style="transition-delay: 0.25s">
+                <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    Resources <span class="material-symbols-rounded">expand_more</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="articles.html">Articles</a>
+                    <a href="podcasts.html">Podcasts</a>
+                </div>
+            </div>
+
+            <a href="calendar.html" style="transition-delay: 0.3s">Calendar</a>
+            <a href="donate.html" class="btn-donate" style="transition-delay: 0.35s">Donate</a>
+            <a href="help.html" class="get-help" style="transition-delay: 0.4s">Get Help</a>
+        </nav>
+    </div>
+
+    <main>
+        <section class="page-header slide-up">
+            <h1>Get in Touch</h1>
+            <p>We're here to answer any questions you may have about our clinic services, volunteering opportunities, or donations.</p>
+        </section>
+
+        <section class="contact-grid slide-up">
+            <div class="contact-info-wrapper">
+                <div class="info-card">
+                    <div class="info-icon"><span class="material-symbols-rounded">location_on</span></div>
+                    <div class="info-content">
+                        <h3>Location</h3>
+                        <p>4403 OH-725 E<br>Bellbrook, OH 45305</p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon"><span class="material-symbols-rounded">phone</span></div>
+                    <div class="info-content">
+                        <h3>Phone</h3>
+                        <p><a href="tel:9378482939">(937) 848-2939</a></p>
+                        <p style="font-size: 0.85rem; margin-top: 0.25rem;">For medical emergencies, please dial 911.</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon"><span class="material-symbols-rounded">mail</span></div>
+                    <div class="info-content">
+                        <h3>Email</h3>
+                        <p><a href="mailto:info@bellbrookopenarmsclinic.org">info@bellbrookopenarmsclinic.org</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-card">
+                <h2>Send a Message</h2>
+                <form class="contact-form" action="#" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" class="form-control" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Doe" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="john@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-control" placeholder="How can we help?" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="query">Your Query</label>
+                        <textarea id="query" name="query" class="form-control" placeholder="Please write your message here..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <div class="footer-wrapper">
+        <footer class="island-footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <p>Providing no-cost health services for the uninsured and underinsured in the Bellbrook, Ohio community area.</p>
+                </div>
+               
+                <div class="footer-contact">
+                    <p><span class="material-symbols-rounded">phone</span> (937) 848-2939</p>
+                    <p><span class="material-symbols-rounded">location_on</span> 4403 OH-725 E, Bellbrook, OH 45305</p>
+                </div>
+               
+                <div class="footer-links">
+                    <a href="#">About Us</a>
+                    <a href="#">Calendar</a>
+                    <a href="#">Donate</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Volunteer</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BOAC - A 501(c)3 Tax Exempt Organization</p>
+                <div class="legal-links">
+                    <a href="Adminlogin.html">Admin Login</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <svg style="width: 0; height: 0; position: absolute;" aria-hidden="true" focusable="false">
+        <filter id="liquid-glass-refraction" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" result="noise" />
+            <feGaussianBlur in="noise" stdDeviation="1" result="blurredNoise" />
+            <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="8" xChannelSelector="R" yChannelSelector="G" result="displacement" />
+        </filter>
+    </svg>
+
+    <script src="assets/js/navbar.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.slide-up').forEach(el => scrollObserver.observe(el));
+        });
+    </script>
+</body>
+</html>

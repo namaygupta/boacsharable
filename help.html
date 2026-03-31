@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Help | Bellbrook Open Arms Clinic</title>
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+   
+    <link rel="stylesheet" href="assets/css/general.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+
+    <style>
+        /* Base Page Layout */
+        main { 
+            padding-top: 140px; 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding-inline: 2rem; 
+            padding-bottom: 4rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-inline: auto;
+        }
+        .page-header h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: var(--primary, #2c3e50); /* Fallback colors in case general.css is missing them */
+        }
+        .page-header p {
+            font-size: 1.25rem;
+            color: var(--text-main, #555);
+        }
+
+        /* Emergency Cards Section */
+        .emergency-section {
+            margin-bottom: 4rem;
+        }
+        .emergency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .emergency-card {
+            background: var(--surface-color, #ffffff);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg, 24px);
+            box-shadow: var(--shadow-soft, 0 8px 30px rgba(0,0,0,0.04));
+            border: 2px solid rgba(220, 53, 69, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .emergency-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(220, 53, 69, 0.15);
+        }
+        .emergency-card.crisis {
+            border-color: rgba(13, 110, 253, 0.1);
+        }
+        .emergency-card.crisis:hover {
+            box-shadow: 0 12px 40px rgba(13, 110, 253, 0.15);
+        }
+        .emergency-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .medical-icon {
+            background: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+        }
+        .crisis-icon {
+            background: rgba(13, 110, 253, 0.1);
+            color: #0d6efd;
+        }
+        .emergency-icon span {
+            font-size: 36px;
+        }
+        .emergency-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .emergency-card p {
+            margin-bottom: 2rem;
+            color: var(--text-main, #555);
+            line-height: 1.6;
+        }
+        .emergency-number {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #dc3545;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background 0.2s ease;
+            margin-top: auto;
+        }
+        .emergency-number:hover {
+            background: #bb2d3b;
+        }
+        .crisis .emergency-number {
+            background: #0d6efd;
+        }
+        .crisis .emergency-number:hover {
+            background: #0b5ed7;
+        }
+
+        /* Gap Clinic Info Card */
+        .gap-info-card {
+            background: linear-gradient(135deg, var(--primary-light, #e9f2ff), #ffffff);
+            padding: 3rem;
+            border-radius: var(--radius-lg, 24px);
+            box-shadow: var(--shadow-soft, 0 8px 30px rgba(0,0,0,0.04));
+            margin-bottom: 4rem;
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        .gap-info-icon {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius-md, 16px);
+            color: var(--primary, #0056b3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .gap-info-icon span {
+            font-size: 40px;
+        }
+        .gap-info-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary, #0056b3);
+        }
+        .gap-info-content p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-main, #444);
+            margin-bottom: 1rem;
+        }
+        .gap-info-content ul {
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+            color: var(--text-main, #444);
+            line-height: 1.7;
+        }
+        .gap-info-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Hours Grid Reused from Index */
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .hours-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .hour-card { background: var(--surface-color, #ffffff); padding: 2.5rem; border-radius: var(--radius-md, 16px); box-shadow: var(--shadow-soft, 0 8px 30px rgba(0,0,0,0.04)); transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid rgba(0,0,0,0.02); display: flex; flex-direction: column; height: 100%; }
+        .hour-card:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+        .card-icon { width: 50px; height: 50px; background: var(--primary-light, #e9f2ff); color: var(--primary, #0056b3); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+        .card-icon span { font-size: 28px; }
+        .hour-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--primary, #0056b3); }
+        .hour-card .audience { font-weight: 600; margin-bottom: 1rem; color: var(--text-main, #555); }
+        .hour-card .time { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--bg-color, #f8f9fa); padding: 0.75rem 1rem; border-radius: 8px; font-weight: 500; margin-top: auto; }
+
+        @media (max-width: 768px) {
+            .gap-info-card {
+                flex-direction: column;
+                padding: 2rem;
+                text-align: center;
+                align-items: center;
+            }
+            .gap-info-content ul {
+                text-align: left;
+            }
+        }
+
+        /* Simple animation utility classes */
+        .slide-up { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .slide-up.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <header class="island-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo-icon" aria-label="Bellbrook Open Arms Clinic Home">
+                 <img src="assets/images/logo.png" width="250" alt="BOAC Logo">
+            </a>
+           
+            <nav class="desktop-menu" aria-label="Main Navigation">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="volunteer.html">Volunteer</a>
+               
+                <div class="dropdown">
+                    <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                        Resources <span class="material-symbols-rounded" style="font-size: 1.2rem;">expand_more</span>
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                        <a href="articles.html" role="menuitem">Articles</a>
+                        <a href="podcasts.html" role="menuitem">Podcasts</a>
+                    </div>
+                </div>
+
+                <a href="calendar.html">Calendar</a>
+                <a href="help.html" class="get-help">Get Help</a>
+                <a href="donate.html" class="btn-donate">Donate</a>
+            </nav>
+
+            <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="material-symbols-rounded icon-menu">menu</span>
+                <span class="material-symbols-rounded icon-close">close</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-overlay" aria-hidden="true">
+        <nav class="mobile-menu">
+            <a href="index.html" style="transition-delay: 0.1s">Home</a>
+            <a href="about.html" style="transition-delay: 0.15s">About</a>
+            <a href="volunteer.html" style="transition-delay: 0.2s">Volunteer</a>
+           
+            <div class="dropdown" style="transition-delay: 0.25s">
+                <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    Resources <span class="material-symbols-rounded">expand_more</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="articles.html">Articles</a>
+                    <a href="podcasts.html">Podcasts</a>
+                </div>
+            </div>
+
+            <a href="calendar.html" style="transition-delay: 0.3s">Calendar</a>
+            <a href="donate.html" class="btn-donate" style="transition-delay: 0.35s">Donate</a>
+            <a href="help.html" class="get-help" style="transition-delay: 0.4s">Get Help</a>
+        </nav>
+    </div>
+
+    <main>
+        <section class="page-header slide-up">
+            <h1>Get Help</h1>
+            <p>Whether you need routine care or are facing a medical emergency, we want to make sure you find the right resources immediately.</p>
+      <br>
+            <h2>This page covers both emergency and clinic support</h2>
+            <h3>Please read through to find the support <i>you</i> need</h3>
+        </section>
+
+        <section class="emergency-section slide-up">
+            <div class="emergency-grid">
+                <div class="emergency-card">
+                    <div class="emergency-icon medical-icon">
+                        <span class="material-symbols-rounded">emergency</span>
+                    </div>
+                    <h2>Medical Emergency</h2>
+                    <p>If you or someone else is experiencing a life-threatening medical emergency, severe injury, or sudden severe illness, do not wait. We are not an ER.</p>
+                    <a href="tel:911" class="emergency-number">
+                        <span class="material-symbols-rounded">call</span> Call 911
+                    </a>
+                </div>
+
+                <div class="emergency-card crisis">
+                    <div class="emergency-icon crisis-icon">
+                        <span class="material-symbols-rounded">volunteer_activism</span>
+                    </div>
+                    <h2>Mental Health Crisis</h2>
+                    <p>If you are experiencing a mental health crisis, emotional distress, or having thoughts of suicide, free and confidential support is available 24/7.</p>
+                    <a href="tel:988" class="emergency-number">
+                        <span class="material-symbols-rounded">call</span> Call or Text 988
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="gap-info-section slide-up">
+            <div class="gap-info-card">
+                <div class="gap-info-icon">
+                    <span class="material-symbols-rounded">info</span>
+                </div>
+                <div class="gap-info-content">
+                    <h2>Clinic Information</h2>
+                    <p>Bellbrook Open Arms Clinic is a <strong>Gap Clinic</strong>. This means we are designed to bridge the gap in healthcare for individuals who are uninsured, underinsured, or currently between health coverage plans. We exist to provide essential, routine care to those who cannot afford it elsewhere.</p>
+                    <p><strong>Please Note:</strong></p>
+                    <ul>
+                        <li>We are staffed by dedicated volunteers and operate on specific days and hours.</li>
+                        <li>We <strong>do not</strong> have the equipment or staff to handle traumatic injuries, heart attacks, strokes, or life-threatening emergencies.</li>
+                        <li>Services are provided on a walk-in basis or by appointment, depending on the specific clinic day.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="hours-section slide-up">
+            <div class="section-header">
+                <h2>Our Standard Operating Hours</h2>
+                <p>For routine care, check-ups, and general medical assistance, visit us during the following times.</p>
+            </div>
+           
+            <div class="hours-grid">
+                <div class="hour-card">
+                    <div class="card-icon"><span class="material-symbols-rounded">stethoscope</span></div>
+                    <h3>Primary Care Clinic</h3>
+                    <p class="audience">All Medical Issues • Walk-Ins Welcome</p>
+                    <p>Routine care, check-ups, and general medical assistance for uninsured individuals.</p>
+                    <div class="time">
+                        <span class="material-symbols-rounded">schedule</span>
+                        Tuesdays, 6 p.m. – 9 p.m.
+                    </div>
+                </div>
+
+                <div class="hour-card">
+                    <div class="card-icon"><span class="material-symbols-rounded">school</span></div>
+                    <h3>Student-Run Free Clinic</h3>
+                    <p class="audience">All Medical Issues • Walk-Ins Welcome</p>
+                    <p>Community care led by dedicated medical students under professional supervision.</p>
+                    <div class="time">
+                        <span class="material-symbols-rounded">event</span>
+                        1st Saturday, 9 a.m. – 1 p.m.
+                    </div>
+                </div>
+
+                <div class="hour-card">
+                    <div class="card-icon"><span class="material-symbols-rounded">psychiatry</span></div>
+                    <h3>Paths to Wellness</h3>
+                    <p class="audience">By Appointment Only</p>
+                    <p>Focused consultations dedicated to long-term wellness and specialized care paths.</p>
+                    <div class="time">
+                        <span class="material-symbols-rounded">edit_calendar</span>
+                        2nd Saturday, 9 a.m. – Noon
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="footer-wrapper">
+        <footer class="island-footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <p>Providing no-cost health services for the uninsured and underinsured in the Bellbrook, Ohio community area.</p>
+                </div>
+               
+                <div class="footer-contact">
+                    <p><span class="material-symbols-rounded">phone</span> (937) 848-2939</p>
+                    <p><span class="material-symbols-rounded">location_on</span> 4403 OH-725 E, Bellbrook, OH 45305</p>
+                </div>
+               
+                <div class="footer-links">
+                    <a href="about.html">About Us</a>
+                    <a href="calendar.html">Calendar</a>
+                    <a href="donate.html">Donate</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="volunteer.html">Volunteer</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BOAC - A 501(c)3 Tax Exempt Organization</p>
+                <div class="legal-links">
+                    <a href="adminlogin.html">Admin Login</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <svg style="width: 0; height: 0; position: absolute;" aria-hidden="true" focusable="false">
+        <filter id="liquid-glass-refraction" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" result="noise" />
+            <feGaussianBlur in="noise" stdDeviation="1" result="blurredNoise" />
+            <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="8" xChannelSelector="R" yChannelSelector="G" result="displacement" />
+        </filter>
+    </svg>
+
+    <script src="assets/js/navbar.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.slide-up').forEach(el => scrollObserver.observe(el));
+        });
+    </script>
+</body>
+</html>

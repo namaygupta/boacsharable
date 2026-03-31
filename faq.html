@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Help | Bellbrook Open Arms Clinic</title>
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+   
+    <link rel="stylesheet" href="assets/css/general.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+
+    <style>
+        main { padding-top: 140px; max-width: 1400px; margin: 0 auto; padding-inline: 2rem; padding-bottom: 4rem; }
+        
+        .page-header { text-align: center; margin-bottom: 4rem; max-width: 800px; margin-inline: auto; }
+        .page-header h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); letter-spacing: -0.02em; margin-bottom: 1rem; color: var(--primary); }
+        .page-header p { font-size: 1.25rem; color: var(--text-main); }
+
+        .urgent-notice { background: #fee2e2; color: #991b1b; padding: 1.5rem 2rem; border-radius: var(--radius-md); display: flex; align-items: center; gap: 1rem; margin-bottom: 4rem; box-shadow: var(--shadow-soft); font-weight: 500; }
+        .urgent-notice .material-symbols-rounded { font-size: 2rem; }
+
+        .info-section { margin-bottom: 6rem; }
+        .section-title { font-size: 2rem; margin-bottom: 2.5rem; text-align: center; color: var(--primary); }
+
+        /* Step Cards */
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; counter-reset: step-counter; }
+        .step-card { background: var(--surface-color); padding: 3rem 2.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-soft); position: relative; border: 1px solid rgba(0,0,0,0.02); transition: var(--transition-snappy); text-align: center; }
+        .step-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+        .step-icon { width: 70px; height: 70px; background: var(--primary-light); color: var(--primary); border-radius: 20px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+        .step-icon span { font-size: 36px; }
+        .step-number { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 4px solid var(--bg-color); }
+        .step-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .step-card p { color: var(--text-main); line-height: 1.6; }
+
+        /* Eligibility & Preparation Island */
+        .prep-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .prep-island { background: linear-gradient(135deg, var(--primary-light), #ffffff); border-radius: var(--radius-lg); padding: 4rem 3rem; box-shadow: var(--shadow-soft); }
+        .prep-island.secondary { background: var(--surface-color); border: 1px solid rgba(0,0,0,0.05); }
+        
+        .prep-island h3 { font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--primary); display: flex; align-items: center; gap: 0.75rem; }
+        .check-list { list-style: none; padding: 0; }
+        .check-list li { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.25rem; font-size: 1.1rem; line-height: 1.5; color: var(--text-main); }
+        .check-list .material-symbols-rounded { color: var(--primary); font-size: 1.5rem; flex-shrink: 0; background: white; border-radius: 50%; padding: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .cross-list .material-symbols-rounded { color: #e11d48; }
+
+        @media (max-width: 968px) {
+            .prep-grid { grid-template-columns: 1fr; }
+            .prep-island { padding: 2.5rem 1.5rem; }
+            .urgent-notice { flex-direction: column; text-align: center; }
+        }
+
+        /* Simple animation utility classes */
+        .slide-up { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .slide-up.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <header class="island-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo-icon" aria-label="Bellbrook Open Arms Clinic Home">
+                 <img src="assets/images/logo.png" width="250" alt="BOAC Logo">
+            </a>
+           
+            <nav class="desktop-menu" aria-label="Main Navigation">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="volunteer.html">Volunteer</a>
+               
+                <div class="dropdown">
+                    <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                        Resources <span class="material-symbols-rounded" style="font-size: 1.2rem;">expand_more</span>
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                        <a href="articles.html" role="menuitem">Articles</a>
+                        <a href="podcasts.html" role="menuitem">Podcasts</a>
+                        <a href="faq.html" role="menuitem">FAQ</a>
+                    </div>
+                </div>
+
+                <a href="calendar.html">Calendar</a>
+                <a href="help.html" class="get-help">Get Help</a>
+                <a href="donate.html" class="btn-donate">Donate</a>
+            </nav>
+
+            <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="material-symbols-rounded icon-menu">menu</span>
+                <span class="material-symbols-rounded icon-close">close</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-overlay" aria-hidden="true">
+        <nav class="mobile-menu">
+            <a href="index.html" style="transition-delay: 0.1s">Home</a>
+            <a href="about.html" style="transition-delay: 0.15s">About</a>
+            <a href="volunteer.html" style="transition-delay: 0.2s">Volunteer</a>
+           
+            <div class="dropdown" style="transition-delay: 0.25s">
+                <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    Resources <span class="material-symbols-rounded">expand_more</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="articles.html">Articles</a>
+                    <a href="podcasts.html">Podcasts</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+            </div>
+
+            <a href="calendar.html" style="transition-delay: 0.3s">Calendar</a>
+            <a href="donate.html" class="btn-donate" style="transition-delay: 0.35s">Donate</a>
+            <a href="help.html" class="get-help" style="transition-delay: 0.4s">Get Help</a>
+        </nav>
+    </div>
+
+    <main>
+        <div class="page-header slide-up">
+            <h1>FAQ</h1>
+            <p>We believe everyone deserves access to quality healthcare. Navigating medical visits can be stressful, so we’ve made our process as simple and welcoming as possible.</p>
+        </div>
+
+        <div class="urgent-notice slide-up">
+            <span class="material-symbols-rounded">warning</span>
+            <div>
+                <strong>Notice:</strong> We are a gap clinic designed for non-emergency medical needs. 
+                If you are experiencing a life-threatening medical emergency, please dial 911 immediately or go to the nearest emergency room.
+            </div>
+        </div>
+
+        <section class="info-section slide-up">
+            <h2 class="section-title">How To Get Seen</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon"><span class="material-symbols-rounded">checklist</span></div>
+                    <h3>Check Requirements</h3>
+                    <p>Ensure you meet our basic eligibility guidelines as an uninsured or underinsured resident seeking care.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon"><span class="material-symbols-rounded">folder_open</span></div>
+                    <h3>Gather Documents</h3>
+                    <p>Collect a valid form of photo ID and, if available, a list of your current medical prescriptions or history.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon"><span class="material-symbols-rounded">meeting_room</span></div>
+                    <h3>Walk In or Schedule</h3>
+                    <p>Visit us during our standard clinic hours on Tuesdays and Saturdays. Walk-ins are accepted on a first-come, first-served basis.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section slide-up">
+            <div class="prep-grid">
+                <div class="prep-island">
+                    <h3><span class="material-symbols-rounded">verified_user</span> Who We Serve</h3>
+                    <p style="margin-bottom: 2rem;">Our mission is to bridge the healthcare gap. You are eligible for our free services if you meet the following:</p>
+                    <ul class="check-list">
+                        <li>
+                            <span class="material-symbols-rounded">check</span>
+                            <span>You do not have medical insurance (uninsured).</span>
+                        </li>
+                        <li>
+                            <span class="material-symbols-rounded">check</span>
+                            <span>Your current insurance has deductibles so high that basic care is unaffordable (underinsured).</span>
+                        </li>
+                        <li>
+                            <span class="material-symbols-rounded">check</span>
+                            <span>You are looking for general primary care, wellness checks, or routine medication refills.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="prep-island secondary">
+                    <h3><span class="material-symbols-rounded">backpack</span> What To Bring</h3>
+                    <p style="margin-bottom: 2rem;">To help our volunteer staff assist you as quickly as possible, please bring the following to your visit:</p>
+                    <ul class="check-list">
+                        <li>
+                            <span class="material-symbols-rounded">badge</span>
+                            <span><strong>Photo ID:</strong> Driver's license, state ID, passport, or other valid identification.</span>
+                        </li>
+                        <li>
+                            <span class="material-symbols-rounded">medication</span>
+                            <span><strong>Medication List:</strong> The actual bottles or a written list of any medications you are currently taking.</span>
+                        </li>
+                        <li>
+                            <span class="material-symbols-rounded">history</span>
+                            <span><strong>Medical History:</strong> Any recent lab results, discharge papers, or relevant medical records (if you have them).</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="footer-wrapper">
+        <footer class="island-footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <p>Providing no-cost health services for the uninsured and underinsured in the Bellbrook, Ohio community area.</p>
+                </div>
+               
+                <div class="footer-contact">
+                    <p><span class="material-symbols-rounded">phone</span> (937) 848-2939</p>
+                    <p><span class="material-symbols-rounded">location_on</span> 4403 OH-725 E, Bellbrook, OH 45305</p>
+                </div>
+               
+                <div class="footer-links">
+                    <a href="about.html">About Us</a>
+                    <a href="calendar.html">Calendar</a>
+                    <a href="donate.html">Donate</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="volunteer.html">Volunteer</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BOAC - A 501(c)3 Tax Exempt Organization</p>
+                <div class="legal-links">
+                    <a href="adminlogin.html">Admin Login</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <svg style="width: 0; height: 0; position: absolute;" aria-hidden="true" focusable="false">
+        <filter id="liquid-glass-refraction" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" result="noise" />
+            <feGaussianBlur in="noise" stdDeviation="1" result="blurredNoise" />
+            <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="8" xChannelSelector="R" yChannelSelector="G" result="displacement" />
+        </filter>
+    </svg>
+
+    <script src="assets/js/navbar.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.slide-up').forEach(el => scrollObserver.observe(el));
+        });
+    </script>
+</body>
+</html>

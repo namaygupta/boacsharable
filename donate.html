@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate | Bellbrook Open Arms Clinic</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/general.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+
+    <style>
+        /* Base page styling carrying over the theme */
+        main { padding-top: 140px; max-width: 1400px; margin: 0 auto; padding-inline: 2rem; padding-bottom: 4rem; }
+        
+        .page-header { text-align: center; margin-bottom: 4rem; max-width: 800px; margin-inline: auto; }
+        .page-header h1 { font-size: clamp(2rem, 4vw, 3.5rem); color: var(--primary, #2c3e50); margin-bottom: 1rem; }
+        .page-header p { font-size: 1.125rem; color: var(--text-main, #4a5568); line-height: 1.6; }
+
+        /* Donate Layout Grid */
+        .donate-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* Island Form Styling */
+        .donate-island {
+            background: var(--surface-color, #ffffff);
+            padding: 3rem;
+            border-radius: var(--radius-lg, 24px);
+            box-shadow: var(--shadow-soft, 0 10px 40px rgba(0,0,0,0.05));
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .donate-island h2 {
+            margin-bottom: 2rem;
+            font-size: 1.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary, #2c3e50);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-main, #4a5568);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary, #3498db);
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+        }
+
+        .amount-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .amount-btn {
+            padding: 1rem;
+            background: var(--bg-color, #f8fafc);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .amount-btn:hover { background: #e2e8f0; }
+        .amount-btn.active {
+            background: var(--primary-light, #ebf5fb);
+            border-color: var(--primary, #3498db);
+            color: var(--primary, #3498db);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1.25rem;
+            background: var(--primary, #3498db);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Other Ways to Give Cards (Reusing hour-card logic) */
+        .alternative-giving {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .give-card {
+            background: var(--surface-color, #ffffff);
+            padding: 2.5rem;
+            border-radius: var(--radius-md, 20px);
+            box-shadow: var(--shadow-soft, 0 10px 40px rgba(0,0,0,0.05));
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: transform 0.3s ease;
+        }
+
+        .give-card:hover { transform: translateY(-5px); }
+
+        .give-card .card-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-light, #ebf5fb);
+            color: var(--primary, #3498db);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .give-card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary, #2c3e50); }
+        .give-card p { color: var(--text-main, #4a5568); line-height: 1.6; margin-bottom: 1.5rem; }
+        .give-card a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary, #3498db);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .give-card a:hover { text-decoration: underline; }
+
+        /* Fake Modal Styling */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-island {
+            background: white;
+            padding: 3rem;
+            border-radius: var(--radius-lg, 24px);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: translateY(30px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.active .modal-island {
+            transform: translateY(0);
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            background: #def7ec;
+            color: #059669;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        .modal-icon span { font-size: 40px; }
+        .modal-island h2 { margin-bottom: 1rem; color: var(--primary, #2c3e50); font-size: 2rem; }
+        .modal-island p { margin-bottom: 2rem; color: var(--text-main, #4a5568); line-height: 1.5; }
+        
+        /* Animations */
+        .slide-up { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .slide-up.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 968px) {
+            .donate-container { grid-template-columns: 1fr; }
+            .donate-island { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="island-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo-icon" aria-label="Bellbrook Open Arms Clinic Home">
+                 <img src="assets/images/logo.png" width="250" alt="BOAC Logo">
+            </a>
+           
+            <nav class="desktop-menu" aria-label="Main Navigation">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="volunteer.html">Volunteer</a>
+               
+                <div class="dropdown">
+                    <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                        Resources <span class="material-symbols-rounded" style="font-size: 1.2rem;">expand_more</span>
+                    </button>
+                    <div class="dropdown-menu" role="menu">
+                        <a href="articles.html" role="menuitem">Articles</a>
+                        <a href="podcasts.html" role="menuitem">Podcasts</a>
+                    </div>
+                </div>
+
+                <a href="calendar.html">Calendar</a>
+                <a href="help.html" class="get-help">Get Help</a>
+                <a href="donate.html" class="btn-donate">Donate</a>
+            </nav>
+
+            <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="material-symbols-rounded icon-menu">menu</span>
+                <span class="material-symbols-rounded icon-close">close</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-overlay" aria-hidden="true">
+        <nav class="mobile-menu">
+            <a href="index.html" style="transition-delay: 0.1s">Home</a>
+            <a href="about.html" style="transition-delay: 0.15s">About</a>
+            <a href="volunteer.html" style="transition-delay: 0.2s">Volunteer</a>
+           
+            <div class="dropdown" style="transition-delay: 0.25s">
+                <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    Resources <span class="material-symbols-rounded">expand_more</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="articles.html">Articles</a>
+                    <a href="podcasts.html">Podcasts</a>
+                </div>
+            </div>
+
+            <a href="calendar.html" style="transition-delay: 0.3s">Calendar</a>
+            <a href="donate.html" class="btn-donate" style="transition-delay: 0.35s">Donate</a>
+            <a href="help.html" class="get-help" style="transition-delay: 0.4s">Get Help</a>
+        </nav>
+    </div>
+
+    <main>
+        <section class="page-header slide-up">
+            <h1>Support Our Mission</h1>
+            <p>Do you want to help support the mission of the Open Arms Health Clinic in providing free healthcare to the uninsured and underinsured of the Bellbrook, Ohio area? Make a secure donation today or explore other ways to give.</p>
+        </section>
+
+        <div class="donate-container">
+            <div class="donate-island slide-up" style="transition-delay: 0.1s;">
+                <h2><span class="material-symbols-rounded">volunteer_activism</span> Secure Donation</h2>
+                
+                <form id="donationForm">
+                    <div class="form-group">
+                        <label>Select Amount</label>
+                        <div class="amount-selector">
+                            <button type="button" class="amount-btn active" data-amount="25">$25</button>
+                            <button type="button" class="amount-btn" data-amount="50">$50</button>
+                            <button type="button" class="amount-btn" data-amount="100">$100</button>
+                        </div>
+                        <input type="number" class="form-control" placeholder="Custom Amount" id="customAmount" style="margin-top: 0.5rem;">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" class="form-control" placeholder="Jane Doe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="jane@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cardNumber">Card Number</label>
+                        <input type="text" id="cardNumber" class="form-control" placeholder="0000 0000 0000 0000" maxlength="19" required>
+                    </div>
+
+                    <div class="card-grid">
+                        <div class="form-group">
+                            <label for="expiry">Expiration</label>
+                            <input type="text" id="expiry" class="form-control" placeholder="MM/YY" maxlength="5" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvc">CVC</label>
+                            <input type="text" id="cvc" class="form-control" placeholder="123" maxlength="4" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <span class="material-symbols-rounded">lock</span> Donate Now
+                    </button>
+                    
+                    <div style="text-align: center; margin-top: 1rem;">
+                        <img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" alt="PayPal Acceptance" style="max-width: 150px; border-radius: 4px;">
+                    </div>
+                </form>
+            </div>
+
+            <div class="alternative-giving">
+                <div class="give-card slide-up" style="transition-delay: 0.2s;">
+                    <div class="card-icon"><span class="material-symbols-rounded">shopping_cart</span></div>
+                    <h3>Kroger Community Rewards</h3>
+                    <p>Simply visit the Kroger website and log into your account. Search for <strong>Community Wellness Coalition, Inc.</strong> either by name or <strong>AW080</strong>, and click Enroll. It costs you nothing and helps us immensely!</p>
+                    <a href="http://www.kroger.com" target="_blank">Visit Kroger.com <span class="material-symbols-rounded" style="font-size: 1.2rem;">open_in_new</span></a>
+                </div>
+
+                <div class="give-card slide-up" style="transition-delay: 0.3s;">
+                    <div class="card-icon"><span class="material-symbols-rounded">storefront</span></div>
+                    <h3>Dorothy Lane Good Neighbor</h3>
+                    <p>Do you shop at the Dorothy Lane Market? Join their Good Neighbor Program and choose the <strong>Bellbrook Open Arms Clinic (#905)</strong> as your chosen nonprofit to support our clinic while you shop.</p>
+                    <a href="https://www.dorothylane.com/club-dlm/good-neighbor-program/" target="_blank">Join DLM Program <span class="material-symbols-rounded" style="font-size: 1.2rem;">open_in_new</span></a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="successModal" aria-hidden="true">
+        <div class="modal-island">
+            <div class="modal-icon">
+                <span class="material-symbols-rounded">check_circle</span>
+            </div>
+            <h2>Thank You!</h2>
+            <p>Your generous donation has been processed successfully. A receipt has been sent to your email. Because of you, we can continue to provide essential care to the Bellbrook community.</p>
+            <button class="btn-submit" id="closeModalBtn" style="width: auto; padding-inline: 2rem; margin: 0 auto;">Close</button>
+        </div>
+    </div>
+
+    <div class="footer-wrapper">
+        <footer class="island-footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <p>Providing no-cost health services for the uninsured and underinsured in the Bellbrook, Ohio community area.</p>
+                </div>
+               
+                <div class="footer-contact">
+                    <p><span class="material-symbols-rounded">phone</span> (937) 848-2939</p>
+                    <p><span class="material-symbols-rounded">location_on</span> 4403 OH-725 E, Bellbrook, OH 45305</p>
+                </div>
+               
+                <div class="footer-links">
+                    <a href="about.html">About Us</a>
+                    <a href="calendar.html">Calendar</a>
+                    <a href="donate.html">Donate</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="volunteer.html">Volunteer</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BOAC - A 501(c)3 Tax Exempt Organization</p>
+                <div class="legal-links">
+                    <a href="adminlogin.html">Admin Login</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <svg style="width: 0; height: 0; position: absolute;" aria-hidden="true" focusable="false">
+        <filter id="liquid-glass-refraction" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" result="noise" />
+            <feGaussianBlur in="noise" stdDeviation="1" result="blurredNoise" />
+            <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="8" xChannelSelector="R" yChannelSelector="G" result="displacement" />
+        </filter>
+    </svg>
+
+    <script src="assets/js/navbar.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Intersection Observer for scroll animations (Reused from index)
+            const scrollObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.slide-up').forEach(el => scrollObserver.observe(el));
+
+            // Donation Form Amount Selection Logic
+            const amountBtns = document.querySelectorAll('.amount-btn');
+            const customInput = document.getElementById('customAmount');
+
+            amountBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    amountBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    customInput.value = ''; // Clear custom input if button is clicked
+                });
+            });
+
+            customInput.addEventListener('input', () => {
+                if(customInput.value) {
+                    amountBtns.forEach(b => b.classList.remove('active'));
+                }
+            });
+
+            // Fake Form Submission & Modal Logic
+            const form = document.getElementById('donationForm');
+            const modal = document.getElementById('successModal');
+            const closeBtn = document.getElementById('closeModalBtn');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault(); // Prevent page reload
+                
+                // Show modal
+                modal.classList.add('active');
+                
+                // Reset form
+                form.reset();
+                amountBtns.forEach(b => b.classList.remove('active'));
+                amountBtns[0].classList.add('active'); // Reset to $25
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+
+            // Simple Card Number Formatting (Spaces every 4 digits)
+            const cardInput = document.getElementById('cardNumber');
+            cardInput.addEventListener('input', function (e) {
+                let target = e.target;
+                let position = target.selectionEnd;
+                let length = target.value.length;
+                target.value = target.value.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim();
+                target.selectionEnd = position += ((target.value.charAt(position - 1) === ' ' && target.value.charAt(length - 1) === ' ' && length !== target.value.length) ? 1 : 0);
+            });
+            
+            // Simple Expiry Date Formatting (MM/YY)
+            const expiryInput = document.getElementById('expiry');
+            expiryInput.addEventListener('input', function (e) {
+                let target = e.target;
+                target.value = target.value.replace(/[^\d]/g, '').replace(/^(\d{2})/, '$1/').trim();
+            });
+        });
+    </script>
+</body>
+</html>
